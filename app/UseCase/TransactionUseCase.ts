@@ -10,8 +10,10 @@ export default class transactionUseCase {
     ) { }
 
 
-    public async run(transactionDto: TransactionDto): Promise<Transaction> {
-        const transaction = await this.transactionRepository.create(transactionDto)
+    public async run(Transaction: TransactionDto): Promise<Transaction> {
+        Transaction.numberOfCard = Transaction.numberOfCard.substr(-4)
+        const transaction = await this.transactionRepository.create(Transaction)
+        console.log(transaction)
         return transaction
     }
 }

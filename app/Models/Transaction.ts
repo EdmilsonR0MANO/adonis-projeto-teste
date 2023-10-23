@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, beforeCreate } from '@ioc:Adonis/Lucid/Orm'
+import {  column } from '@ioc:Adonis/Lucid/Orm'
 import UuidBase from "./Base/UuidBase";
 
 export default class Transaction extends UuidBase {
+
 
   @column()
   amount: number;
@@ -22,6 +23,7 @@ export default class Transaction extends UuidBase {
   @column()
   dataExpirationCard: DateTime;
 
+
   @column()
   verificationCodeCard: string
 
@@ -30,4 +32,12 @@ export default class Transaction extends UuidBase {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  serialize() {
+    return {
+      id: this.id,
+      dataExpirationCard: this.dataExpirationCard.toFormat("dd-MM-yyyy"),
+    };
+  }
 }
+

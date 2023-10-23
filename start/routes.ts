@@ -24,3 +24,4 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 Route.post('/transaction', 'processOfTransactionsController.create')
+Route.get('/transaction/list', 'processOfTransactionsController.show')
